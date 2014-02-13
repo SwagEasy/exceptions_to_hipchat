@@ -21,7 +21,7 @@ module ExceptionsToHipchat
 
     def send_to_hipchat(exception)
       begin
-        @client[@room].send(@user, message_for(exception), :color => @color, :notify => @notify)
+        @client[@room].send(@user, `hostname`.to_s+message_for(exception).to_s, :color => @color, :notify => @notify)
       rescue => hipchat_exception
         $stderr.puts "\nWARN: Unable to send message to HipChat: #{hipchat_exception}\n"
       end
