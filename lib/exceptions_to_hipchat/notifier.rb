@@ -23,7 +23,7 @@ module ExceptionsToHipchat
                        :uri=> env['REQUEST_URI'],
                        :server=> env['SERVER_NAME'],
                        :host=> env['HTTP_HOST']}
-      send_to_hipchat("#{user} @ #{important_stuff.to_json} \n\n#{exception}\n #{exception.backtrace.first(3)}") unless @ignore && @ignore.match(exception.to_s)
+      send_to_hipchat("#{Time.now} #{user} @ #{important_stuff.to_json} \n\n#{exception}\n #{exception.backtrace.first(3)}") unless @ignore && @ignore.match(exception.to_s)
       raise exception
     end
 
